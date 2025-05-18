@@ -1,11 +1,127 @@
 {
-    "MyTask1": {},
-    "MyTask2": {},
-    "MyTask3": {},
-    "MyTask4": {
-        "recognition": "Custom",
-        "custom_recognition": "my_reco_222",
-        "action": "Custom",
-        "custom_action": "my_action_111"
+    "大地图刷野开始_打1走1":
+    {
+        "recognition":"DirectHit",
+        "action":"Swipe",
+        "begin":[386,60,10,10],
+        "end":[560,60,10,10],
+         "next":["检测是否进入战斗","右移动"
+                ]
+    },
+    "右移动":
+    {
+        "recognition":"DirectHit",
+        "action":"Swipe",
+        "begin":[560,60,10,10],
+        "end":[386,60,10,10],
+        "next":["检测是否进入战斗","大地图刷野开始_打1走1"
+                ]
+    },
+    "检测是否进入战斗":
+    {
+        "recognition":"TemplateMatch",
+        "roi":[20,598,95,96],
+        "template":"开始战斗.png",
+        "next":["检测猫","检测是否进入战斗1"]
+    },
+    "检测是否进入战斗1":
+    {
+        "recognition":"TemplateMatch",
+        "roi":[20,598,95,96],
+        "template":"开始战斗.png",
+        "next":["检测猫","进行委托战斗"]
+    },
+
+    "检测猫":
+    {   
+        "recognition":"TemplateMatch",
+        "roi":[38,142,640,470],
+        "template":["富有凯特琳.png","富有凯特琳异种.png","凯特琳.png","凯特琳异种.png","绅士凯特琳猫.png","绅士凯特琳异种.png","神圣凯特琳.png","亡者凯特琳.png"],
+        "threshold":0.55,
+        "nxet":["点击撤退"]
+    },
+    "与猫战斗":
+    {
+        
+    },
+    "点击撤退":
+    {
+        "recognition":"TemplateMatch",
+        "roi":[545,612,91,90],
+        "template":"撤退.png",
+        "action":"Click",
+        "next":"大地图刷野开始_打1走1"
+    },
+    "进行委托战斗":
+    {
+        "recognition":"TemplateMatch",
+        "roi": [430,624,118,71],
+        "template":"委托.png",
+        "action":"Click",
+        "next":["点击委托战斗开始","取消委托"]
+    },
+    "点击委托战斗开始":
+    {
+        "recognition":"TemplateMatch",
+        "roi":[930,583,338,122],
+        "template":"委托战斗开始.png",
+        "action":"Click",
+        "next":["取消委托"]
+    },
+    "取消委托":
+    {
+        "recognition":"DirectHit",
+         "action":"Click",
+         "target":[466,592,343,80],
+        "next":["双击结束","进行委托战斗"]
+    },
+    "双击结束":
+    {
+        "recognition":"TemplateMatch",
+        "roi": [69,4,317,95],
+        "template":"战斗结算.png",
+        "action":"Click",
+        "target_offset":[0,0,0,0],
+        "next":["左移动_2"]
+    },
+    "左移动_2":
+    {
+        "recognition":"DirectHit",
+        "action":"Swipe",
+        "begin":[386,60,10,10],
+        "end":[560,60,10,10],
+         "next":["检测是否进入战斗_2","右移动_2"
+                ]
+    },
+    "右移动_2":
+    {
+        "recognition":"DirectHit",
+        "action":"Swipe",
+        "begin":[560,60,10,10],
+        "end":[386,60,10,10],
+        "next":["检测是否进入战斗_2","左移动_2"
+                ]
+    },
+    "检测是否进入战斗_2":
+    {
+        "recognition":"TemplateMatch",
+        "roi":[20,598,95,96],
+        "template":"开始战斗.png",
+        "next":["检测猫","检测是否进入战斗_2_1"]
+    },
+    "检测是否进入战斗_2_1":
+    {
+        "recognition":"TemplateMatch",
+        "roi":[20,598,95,96],
+        "template":"开始战斗.png",
+        "next":["检测猫","点击撤退_2"]
+    },
+    "点击撤退_2":
+    {
+        "recognition":"TemplateMatch",
+        "roi":[545,612,91,90],
+        "template":"撤退.png",
+        "action":"Click",
+        "next":"右移动"
     }
 }
